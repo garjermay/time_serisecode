@@ -11,8 +11,8 @@ root_path='./data'
 
 seq_len=96
 e_layers=2
-learning_rate=0.03
-d_model=16
+learning_rate=0.015
+d_model=32
 n_heads=4
 d_ff=32
 train_epochs=20
@@ -21,12 +21,12 @@ batch_size=128
 dropout=0.1
 down_sampling_layers=2
 down_sampling_window=2
-aug_constrast_weight1=0.04
-aug_constrast_weight2=0.08
-freq_weight=4
-alpha=0.9 
+aug_constrast_weight1=0.008
+aug_constrast_weight2=0.04
+freq_weight=8
+alpha=0.4 
 l1l2_alpha=0.035
-aug_weight=0.04
+aug_weight=0.05
 mix_rate=0.1
 jitter_ratio=0.3
 devices='0'
@@ -37,19 +37,19 @@ python -u run_model.py \
 --task_name long_term_forecast \
 --is_training 1 \
 --devices $devices \
---data_path exchange_rate.csv \
+--data_path weather.csv \
 --root_path $root_path \
---model_id $run_date'_exchange_rate' \
+--model_id $run_date'_weather' \
 --model $model_name \
 --data custom \
 --features M \
 --seq_len $seq_len \
 --label_len 0 \
---pred_len 96 \
+--pred_len 336 \
 --e_layers $e_layers \
 --decomp_method wavelet \
---enc_in 8 \
---dec_in 8 \
+--enc_in 21 \
+--dec_in 21 \
 --des 'Exp' \
 --itr 1 \
 --patch_len 16 \
